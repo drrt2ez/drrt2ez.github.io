@@ -19,7 +19,7 @@ html, body {
   left: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: url('images/background.jpg') no-repeat center center;
+  background: url('images/background.jpg') no-repeat center center;
   background-size: cover;
   z-index: -2;
   filter: brightness(0.6);
