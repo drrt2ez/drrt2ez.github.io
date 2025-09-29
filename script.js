@@ -1,9 +1,27 @@
 // Глобальная переменная для хранения текущего проигрываемого видео
 let modalPlayer;
 
+// Функция для загрузки превьюшек
+function loadThumbnails() {
+  document.querySelectorAll('.youtube-video').forEach(videoDiv => {
+    const videoId = videoDiv.dataset.id;
+    const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    const img = videoDiv.querySelector('img.thumbnail');
+
+    if (img) {
+      img.src = thumbnailUrl;
+    }
+  });
+}
+
 // Эта функция вызывается автоматически после загрузки YouTube IFrame API
 function onYouTubeIframeAPIReady() {
-  // Добавляем обработчики клика на все мини-видео
+  setupVideoClickHandlers();
+  setupModalCloseHandlers();
+}
+
+// Добавляем обработчики клика на все мини-видео
+function setupVideoClickHandlers() {
   document.querySelectorAll('.youtube-video').forEach(videoDiv => {
     videoDiv.addEventListener('click', () => {
       const videoId = videoDiv.dataset.id;
@@ -29,14 +47,24 @@ function onYouTubeIframeAPIReady() {
       });
     });
   });
+}
 
-  // Обработчики закрытия модального окна
-  document.getElementById('closeModal').addEventListener('click', closeModal);
-  document.getElementById('videoModal').addEventListener('click', (e) => {
-    if (e.target.id === 'videoModal') {
-      closeModal();
-    }
-  });
+// Обработчики закрытия модального окна
+function setupModalCloseHandlers() {
+  const closeModalBtn = document.getElementById('closeModal');
+  const modal = document.getElementById('videoModal');
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+  }
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target.id === 'videoModal') {
+        closeModal();
+      }
+    });
+  }
 }
 
 // Функция закрытия модального окна и остановки видео
@@ -49,6 +77,15 @@ function closeModal() {
     modalPlayer.stopVideo();
   }
 
-  // Очищаем контейнер с видео
-  document.getElementById('modalVideoContainer').innerHTML = '';
+  // Удаляем iframe из DOM
+  const container = document.getElementById('modalVideoContainer');
+  container.innerHTML = '';
+
+  // Сбрасываем переменную плеера, чтобы можно было открыть новое видео
+  modalPlayer = null;
 }
+
+// Запускаем при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+  loadThumbnails(); // Подгружаем превью
+});
