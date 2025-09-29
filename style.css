@@ -10,6 +10,7 @@ html, body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff;
   overflow: hidden;
+  position: relative;
 }
 
 /* Фоновое изображение */
@@ -25,7 +26,7 @@ html, body {
   filter: brightness(0.6);
 }
 
-/* Левый и правый столбики */
+/* Левый и правый столбики с видео */
 .side {
   position: fixed;
   top: 50%;
@@ -47,15 +48,15 @@ html, body {
   right: 0;
 }
 
-.side img {
+.mini-video {
   width: 100%;
-  max-width: 100px;
-  opacity: 0.8;
-  transition: opacity 0.3s, transform 0.3s;
+  max-width: 120px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
-.side img:hover {
-  opacity: 1;
+.mini-video:hover {
   transform: scale(1.1);
 }
 
@@ -88,6 +89,43 @@ html, body {
   color: #ccc;
 }
 
+/* Модальное окно */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #111;
+  padding: 10px;
+  border-radius: 10px;
+  width: 60%;
+  max-width: 600px;
+}
+
+.modal-content video {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
+
 /* Адаптация под мобильные устройства */
 @media (max-width: 1024px) {
   .side {
@@ -99,7 +137,7 @@ html, body {
     padding: 30px 20px;
   }
 
-  .background {
-    background-position: center top;
+  .modal-content {
+    width: 90%;
   }
 }

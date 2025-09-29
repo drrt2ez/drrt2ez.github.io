@@ -2,19 +2,28 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Noname Band</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Темный фон -->
   <div class="background"></div>
 
-  <!-- Левый столбик -->
+  <!-- Левый столбик с видео -->
   <div class="side left">
-    <img src="images/left1.png" alt="Картинка 1">
-    <img src="images/left2.png" alt="Картинка 2">
-    <img src="images/left3.png" alt="Картинка 3">
-    <img src="images/left4.png" alt="Картинка 4">
+    <video class="mini-video" src="videos/left1.mp4" autoplay loop muted playsinline></video>
+    <video class="mini-video" src="videos/left2.mp4" autoplay loop muted playsinline></video>
+    <video class="mini-video" src="videos/left3.mp4" autoplay loop muted playsinline></video>
+    <video class="mini-video" src="videos/left4.mp4" autoplay loop muted playsinline></video>
+  </div>
+
+  <!-- Правый столбик с видео -->
+  <div class="side right">
+    <video class="mini-video" src="videos/right1.mp4" autoplay loop muted playsinline></video>
+    <video class="mini-video" src="videos/right2.mp4" autoplay loop muted playsinline></video>
+    <video class="mini-video" src="videos/right3.mp4" autoplay loop muted playsinline></video>
+    <video class="mini-video" src="videos/right4.mp4" autoplay loop muted playsinline></video>
   </div>
 
   <!-- Центральный блок -->
@@ -23,12 +32,14 @@
     <p>Музыка, вдохновлённая миром Lineage 2</p>
   </main>
 
-  <!-- Правый столбик -->
-  <div class="side right">
-    <img src="images/right1.png" alt="Картинка 1">
-    <img src="images/right2.png" alt="Картинка 2">
-    <img src="images/right3.png" alt="Картинка 3">
-    <img src="images/right4.png" alt="Картинка 4">
+  <!-- Модальное окно для видео -->
+  <div class="modal" id="videoModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <video id="modalVideo" controls autoplay></video>
+    </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
