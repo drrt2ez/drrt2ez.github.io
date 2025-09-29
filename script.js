@@ -1,33 +1,54 @@
-// Получаем элементы
-const videos = document.querySelectorAll('.mini-video');
-const modal = document.getElementById('videoModal');
-const modalVideo = document.getElementById('modalVideo');
-const closeModal = document.getElementById('closeModal');
+// Глобальная переменная для хранения текущего проигрываемого видео
+let modalPlayer;
 
-// При клике на видео — открываем модальное окно и воспроизводим его
-videos.forEach(video => {
-  video.addEventListener('click', () => {
-    modal.style.display = 'flex';
-    modalVideo.src = video.src;
-    modalVideo.muted = false;
-    modalVideo.play();
+// Эта функция вызывается автоматически после загрузки YouTube IFrame API
+function onYouTubeIframeAPIReady() {
+  // Добавляем обработчики клика на все мини-видео
+  document.querySelectorAll('.youtube-video').forEach(videoDiv => {
+    videoDiv.addEventListener('click', () => {
+      const videoId = videoDiv.dataset.id;
+
+      // Открываем модальное окно
+      document.getElementById('videoModal').style.display = 'flex';
+
+      // Очищаем контейнер от предыдущего видео
+      const container = document.getElementById('modalVideoContainer');
+      container.innerHTML = '';
+
+      // Создаем новый плеер YouTube
+      modalPlayer = new YT.Player(container, {
+        height: '337',
+        width: '600',
+        videoId: videoId,
+        playerVars: {
+          autoplay: 1,        // Автовоспроизведение
+          controls: 1,        // Показывать элементы управления
+          modestbranding: 1,  // Минимизация логотипа YouTube
+          rel: 0              // Не показывать похожие видео в конце
+        }
+      });
+    });
   });
-});
 
-// Закрытие модального окна
-closeModal.addEventListener('click', () => {
+  // Обработчики закрытия модального окна
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  document.getElementById('videoModal').addEventListener('click', (e) => {
+    if (e.target.id === 'videoModal') {
+      closeModal();
+    }
+  });
+}
+
+// Функция закрытия модального окна и остановки видео
+function closeModal() {
+  const modal = document.getElementById('videoModal');
   modal.style.display = 'none';
-  modalVideo.pause();
-  modalVideo.currentTime = 0;
-  modalVideo.src = '';
-});
 
-// Закрытие по клику вне окна
-window.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.style.display = 'none';
-    modalVideo.pause();
-    modalVideo.currentTime = 0;
-    modalVideo.src = '';
+  // Останавливаем видео, если оно было создано
+  if (modalPlayer && modalPlayer.stopVideo) {
+    modalPlayer.stopVideo();
   }
-});
+
+  // Очищаем контейнер с видео
+  document.getElementById('modalVideoContainer').innerHTML = '';
+}

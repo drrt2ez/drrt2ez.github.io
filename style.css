@@ -26,7 +26,7 @@ html, body {
   filter: brightness(0.6);
 }
 
-/* Левый и правый столбики с видео */
+/* Левый и правый столбики с YouTube видео */
 .side {
   position: fixed;
   top: 50%;
@@ -48,15 +48,42 @@ html, body {
   right: 0;
 }
 
-.mini-video {
+/* Мини-видео */
+.youtube-video {
   width: 100%;
   max-width: 120px;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-.mini-video:hover {
+.youtube-video::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg') center center / cover;
+  opacity: 0.9;
+}
+
+.youtube-video::before {
+  content: '▶️';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: white;
+  opacity: 0.8;
+}
+
+.youtube-video:hover {
   transform: scale(1.1);
 }
 
@@ -112,8 +139,9 @@ html, body {
   max-width: 600px;
 }
 
-.modal-content video {
+.modal iframe {
   width: 100%;
+  height: 337px;
   border-radius: 8px;
 }
 
