@@ -1,30 +1,81 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+/* Базовые настройки */
+* {
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  box-sizing: border-box;
 }
 
-header {
-  background: #4a90e2;
-  color: white;
-  padding: 20px;
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* Фон */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/background.png') no-repeat center center/cover;
+  z-index: -10;
+  filter: brightness(0.6);
+}
+
+/* Центральный блок */
+.content-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px 60px;
+  border: 2px solid #888;
+  border-radius: 12px;
   text-align: center;
+  box-shadow: 0 0 20px #333;
 }
 
-main {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+.content-box h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #ff4081;
+  text-shadow: 0 0 10px #000;
 }
 
-footer {
-  text-align: center;
-  padding: 10px;
-  font-size: 0.9em;
-  color: #777;
-  border-top: 1px solid #ddd;
-  margin-top: 40px;
+.content-box p {
+  font-size: 1.2em;
+  color: #ccc;
+}
+
+/* Левый и правый декор */
+.left-decoration,
+.right-decoration {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.left-decoration {
+  left: 20px;
+}
+
+.right-decoration {
+  right: 20px;
+}
+
+.left-decoration img,
+.right-decoration img {
+  width: 100%;
+}
+
+.left-decoration:hover,
+.right-decoration:hover {
+  opacity: 1;
 }
