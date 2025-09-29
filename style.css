@@ -19,7 +19,7 @@ html, body {
   left: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: url('images/background.jpg') no-repeat center center;
   background-size: cover;
   z-index: -2;
   filter: brightness(0.6);
