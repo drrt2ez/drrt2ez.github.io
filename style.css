@@ -1,3 +1,4 @@
+/* Базовые настройки */
 * {
   margin: 0;
   padding: 0;
@@ -6,25 +7,25 @@
 
 html, body {
   height: 100%;
-  font-family: sans-serif;
-  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
   overflow: hidden;
-  position: relative;
 }
 
-background {
+/* Фоновое изображение */
+.background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   min-height: 100vh;
-  background: url('images/background.jpg') no-repeat center center fixed;
+  background: url('images/background.jpg') no-repeat center center;
   background-size: cover;
   z-index: -2;
   filter: brightness(0.6);
 }
 
-/* Контейнеры для столбиков и центрального блока */
+/* Левый и правый столбики */
 .side {
   position: fixed;
   top: 50%;
@@ -35,16 +36,15 @@ background {
   align-items: center;
   gap: 20px;
   z-index: 1;
+  padding: 10px;
 }
 
 .left {
   left: 0;
-  padding-left: 10px;
 }
 
 .right {
   right: 0;
-  padding-right: 10px;
 }
 
 .side img {
@@ -86,4 +86,20 @@ background {
 .content-box p {
   font-size: 1.2em;
   color: #ccc;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 1024px) {
+  .side {
+    display: none;
+  }
+
+  .content-box {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .background {
+    background-position: center top;
+  }
 }
