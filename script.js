@@ -27,7 +27,8 @@ function setupVideoClickHandlers() {
       const videoId = videoDiv.dataset.id;
 
       // Открываем модальное окно
-      document.getElementById('videoModal').style.display = 'flex';
+      const modal = document.getElementById('videoModal');
+      modal.style.display = 'flex';
 
       // Очищаем контейнер от предыдущего видео
       const container = document.getElementById('modalVideoContainer');
@@ -39,10 +40,14 @@ function setupVideoClickHandlers() {
         width: '600',
         videoId: videoId,
         playerVars: {
-          autoplay: 1,        // Автовоспроизведение
-          controls: 1,        // Показывать элементы управления
-          modestbranding: 1,  // Минимизация логотипа YouTube
-          rel: 0              // Не показывать похожие видео в конце
+          autoplay: 1,
+          controls: 1,
+          modestbranding: 1,
+          rel: 0
+        },
+        events: {
+          // Можно добавить обработчики событий, если нужно
+          'onReady': onPlayerReady
         }
       });
     });
@@ -83,6 +88,11 @@ function closeModal() {
 
   // Сбрасываем переменную плеера, чтобы можно было открыть новое видео
   modalPlayer = null;
+}
+
+// Необязательно: можно использовать для дополнительных действий
+function onPlayerReady(event) {
+  // event.target.playVideo(); — если нужно явно запустить
 }
 
 // Запускаем при загрузке страницы
