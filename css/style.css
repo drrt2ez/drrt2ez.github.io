@@ -31,12 +31,9 @@ body {
 .neon-sign {
   font-size: 48px;
   font-weight: bold;
-  color: #00ffe7;
   text-transform: uppercase;
   letter-spacing: 4px;
   margin-bottom: 20px;
-  position: relative;
-  animation: flicker 2s infinite;
   background: linear-gradient(90deg, #00ffe7, #ff00d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -45,8 +42,10 @@ body {
     0 0 10px #00ffe7,
     0 0 20px #00ffe7,
     0 0 40px #ff00d4;
+  animation: flicker 2s infinite;
 }
 
+/* Анимация мерцания */
 @keyframes flicker {
   0%, 18%, 22%, 25%, 53%, 57%, 100% {
     opacity: 1;
