@@ -1,0 +1,66 @@
+/* Базовые стили */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d0d0d;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Центральный блок */
+.center {
+  text-align: center;
+  flex: 1;
+  padding: 20px;
+}
+
+.center h1 {
+  font-size: 24px;
+  background: linear-gradient(90deg, #00f2ff, #ff00d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.5;
+}
+
+/* Блоки с картинками */
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 150px;
+}
+
+.side img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.side img:hover {
+  transform: scale(1.05);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .side {
+    margin: 10px 0;
+  }
+}
